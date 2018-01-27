@@ -53,11 +53,11 @@ client.on('message', msg => {
     const args = msg.content.split(' ').slice(1).join(' ');
     if (command === 'getalt') {
 	    
-		if (message.member.hasPermission("MANAGE_MESSAGES")) {
-		    message.channel.fetchMessages()
+		if (msg.member.hasPermission("MANAGE_MESSAGES")) {
+		    msg.channel.fetchMessages()
 		       .then(function(list){
-			    message.channel.bulkDelete(list);
-			}, function(err){message.channel.send("ERROR: ERROR CLEARING CHANNEL.")})  
+			    msg.channel.bulkDelete(list);
+			}, function(err){msg.channel.send("ERROR: ERROR CLEARING CHANNEL.")})  
 		}
 			
 	    		msg.channel.send("اكتب : !getalt");
