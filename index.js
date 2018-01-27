@@ -58,6 +58,7 @@ client.on('message', msg => {
 		       .then(function(list){
 			    message.channel.bulkDelete(list);
 			}, function(err){message.channel.send("ERROR: ERROR CLEARING CHANNEL.")})  
+		}
 			
 	    		msg.channel.send("اكتب : !getalt");
 	    		msg.channel.send("للحصول علي حساب.");
