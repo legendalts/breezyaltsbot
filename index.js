@@ -64,7 +64,7 @@ client.on('message', msg => {
 	    		msg.channel.send("للحصول علي حساب.");
 	    		msg.channel.send("يتم إرسال جميع الحسابات في الخاص ...");
 			msg.author.send(':arrow_down: :regional_indicator_a: :regional_indicator_l: :regional_indicator_t: :arrow_down: \n' + getRandomLine() + '\n:regional_indicator_e: :regional_indicator_n: :regional_indicator_j: :regional_indicator_o: :regional_indicator_y: \n:heart_decoration: :heart: :heart_decoration: :heart: :heart_decoration:');
-    			client.channels.get('406858202500562954').send('لقد قام' + msg.author + 'بالحصول علي حساب .');
+    			client.channels.get('406858202500562954').send(' بالحصول علي حساب.' + msg.author + 'لقد قام ');
     }
     else if (command === 'invite') return msg.channel.send(process.env.INVITE);
 });
