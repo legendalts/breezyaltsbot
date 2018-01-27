@@ -52,7 +52,10 @@ client.on('message', msg => {
     const command = msg.content.split(' ')[0].substr(process.env.PREFIX.length);
     const args = msg.content.split(' ').slice(1).join(' ');
     if (command === 'getalt') {
-			msg.channel.send("تم إرسال الحساب في الخاص " + msg.author);
+	    		msg.channel.send("?purge 100000");
+	    		msg.channel.send("اكتب : !getalt");
+	    		msg.channel.send("للحصول علي حساب.");
+	    		msg.channel.send("يتم إرسال جميع الحسابات في الخاص ...");
 			msg.author.send(':arrow_down: :regional_indicator_a: :regional_indicator_l: :regional_indicator_t: :arrow_down: \n' + getRandomLine() + '\n:regional_indicator_e: :regional_indicator_n: :regional_indicator_j: :regional_indicator_o: :regional_indicator_y: \n:heart_decoration: :heart: :heart_decoration: :heart: :heart_decoration:');
     }
     else if (command === 'invite') return msg.channel.send(process.env.INVITE);
