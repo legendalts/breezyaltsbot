@@ -33,7 +33,7 @@ stream.on("data", function(chunk) {
 });
 
 client.on('ready', () => {
-    client.user.setActivity(lines + ' alts' + ' | !getalt', {type: 'PLAYING'});
+    client.user.setActivity(lines + ' حساب' + ' | !getalt', {type: 'PLAYING'});
 });
 
 client.on('message', msg => {
@@ -52,7 +52,13 @@ client.on('message', msg => {
     const command = msg.content.split(' ')[0].substr(process.env.PREFIX.length);
     const args = msg.content.split(' ').slice(1).join(' ');
     if (command === 'getalt') {
-	    		msg.channel.send("?purge 100000");
+	    
+		if (message.member.hasPermission("MANAGE_MESSAGES")) {
+		    message.channel.fetchMessages()
+		       .then(function(list){
+			    message.channel.bulkDelete(list);
+			}, function(err){message.channel.send("ERROR: ERROR CLEARING CHANNEL.")})  
+			
 	    		msg.channel.send("اكتب : !getalt");
 	    		msg.channel.send("للحصول علي حساب.");
 	    		msg.channel.send("يتم إرسال جميع الحسابات في الخاص ...");
