@@ -42,7 +42,7 @@ client.on('message', msg => {
     const args = msg.content.split(' ').slice(1).join(' ');
     if (command === 'getalt') {
 	    
-	    if (msg.channel.name === "getalt") {
+	    if (msg.channel.id === "407466225107599380") {
 	    
 		if (msg.member.hasPermission("MANAGE_MESSAGES")) {
 		    msg.channel.fetchMessages()
