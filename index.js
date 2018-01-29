@@ -62,6 +62,8 @@ client.on('message', msg => {
 	    } else {
 			msg.author.send("Please use this command in the #get-alt channel of our server.");
 		}
+		
+	}
     else if (command === 'invite') return msg.channel.send(process.env.INVITE);
 });
 
