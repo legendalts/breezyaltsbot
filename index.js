@@ -65,16 +65,12 @@ client.on('message', msg => {
 			msg.author.send(':arrow_down: :regional_indicator_a: :regional_indicator_l: :regional_indicator_t: :arrow_down: \n' + getRandomLine() + '\n:regional_indicator_e: :regional_indicator_n: :regional_indicator_j: :regional_indicator_o: :regional_indicator_y: \n:heart_decoration: :heart: :heart_decoration: :heart: :heart_decoration:');
     	      		client.channels.get('407464458181672961').send('The user ' + msg.author + ' claimed an alt.');
 					
-					if (msg.member.roles.has('407531996533882881')) {
-						// the user shouldn't wait a minute before getting another alt.
-					} else {
 						// Adds the user to the set so that they can't talk for a minute
 						talkedRecently.add(msg.author.id);
 						setTimeout(() => {
 						  // Removes the user from the set after a minute
 						  talkedRecently.delete(msg.author.id);
 						}, 60000);
-					}
 					
 		    }
 	    } else {
