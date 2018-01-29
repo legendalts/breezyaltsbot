@@ -45,6 +45,16 @@ client.on('message', msg => {
 	    if (msg.channel.id === "407466225107599380") {
 		    
 		    if (talkedRecently.has(msg.author.id)) {
+			
+			msg.channel.fetchMessages()
+		       .then(function(list){
+			    msg.channel.bulkDelete(list);
+			}, function(err){msg.channel.send("ERROR: ERROR CLEARING CHANNEL.")}) 
+			
+				msg.channel.send("Type !getalt");
+	    		msg.channel.send("To claim an alt.");
+	    		msg.channel.send("All the alts are sent to the DMs.");
+			
 				msg.author.send("Please wait a minute before getting another alt.");
 		    } else {
 		    
