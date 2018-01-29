@@ -51,9 +51,7 @@ client.on('message', msg => {
 			    msg.channel.bulkDelete(list);
 			}, function(err){msg.channel.send("ERROR: ERROR CLEARING CHANNEL.")}) 
 			
-				msg.channel.send("Type !getalt");
-	    		msg.channel.send("To claim an alt.");
-	    		msg.channel.send("All the alts are sent to the DMs.");
+			msg.channel.send("Type !getalt\nTo claim an alt.\nAll the alts are sent to the DMs.");
 			
 				msg.author.send("Please wait a minute before getting another alt.");
 		    } else {
