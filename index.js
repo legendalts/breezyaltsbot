@@ -33,18 +33,7 @@ stream.on("data", function(chunk) {
 });
 
 client.on('ready', () => {
-    client.user.setActivity(lines + ' حساب' + ' | !getalt', {type: 'PLAYING'});
-});
-
-client.on('message', msg => {
-    if (!msg.content.startsWith(process.env.PREFIX) || !msg.guild) return;
-    const command = msg.content.split(' ')[0].substr(process.env.PREFIX.length);
-    const args = msg.content.split(' ').slice(1).join(' ');
-    if (command === 'help') {
-      msg.channel.send('O(========>EgyptAlts<========)O');
-      msg.channel.send('اكتب !getalt في قناة #get-alt');
-    }
-    else if (command === 'invite') return msg.channel.send(process.env.INVITE);
+    client.user.setActivity(lines + ' alt' + ' | !getalt', {type: 'PLAYING'});
 });
 
 client.on('message', msg => {
@@ -60,25 +49,13 @@ client.on('message', msg => {
 			}, function(err){msg.channel.send("ERROR: ERROR CLEARING CHANNEL.")})  
 		}
 			
-	    		msg.channel.send("اكتب : !getalt");
-	    		msg.channel.send("للحصول علي حساب.");
-	    		msg.channel.send("يتم إرسال جميع الحسابات في الخاص ...");
+	    		msg.channel.send("Type !getalt");
+	    		msg.channel.send("To clalim an alt.");
+	    		msg.channel.send("All the alts are sent to the DMs.");
 			msg.author.send(':arrow_down: :regional_indicator_a: :regional_indicator_l: :regional_indicator_t: :arrow_down: \n' + getRandomLine() + '\n:regional_indicator_e: :regional_indicator_n: :regional_indicator_j: :regional_indicator_o: :regional_indicator_y: \n:heart_decoration: :heart: :heart_decoration: :heart: :heart_decoration:');
-    			client.channels.get('406858202500562954').send(' بالحصول علي حساب.' + msg.author + 'لقد قام ');
+    			client.channels.get('407464458181672961').send('The user' + msg.author + 'claimed an alt.');
     }
     else if (command === 'invite') return msg.channel.send(process.env.INVITE);
-});
-
-client.on('message', function(message) {
-    if (message.content == "!clear") {
-        if (message.member.hasPermission("MANAGE_MESSAGES")) {
-            message.channel.fetchMessages()
-               .then(function(list){
-                    message.channel.bulkDelete(list);
-                }, function(err){message.channel.send("ERROR: ERROR CLEARING CHANNEL.")})                        
-        }
-    }
-
 });
 
 client.login(process.env.TOKEN);
