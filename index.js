@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 // First, this must be at the top level of your code, **NOT** in any event!
-//const talkedRecently = new Set();
+const talkedRecently = new Set();
 
 fs = require('fs')
 var data;
@@ -44,6 +44,10 @@ client.on('message', msg => {
 	    
 	    if (msg.channel.id === "407466225107599380") {
 		    
+		    if (talkedRecently.has(msg.author.id)) {
+				msg.author.send("Please wait a minute before getting another alt.");
+		    } else {
+		    
 		    msg.channel.fetchMessages()
 		       .then(function(list){
 			    msg.channel.bulkDelete(list);
@@ -54,10 +58,10 @@ client.on('message', msg => {
 	    		msg.channel.send("All the alts are sent to the DMs.");
 			msg.author.send(':arrow_down: :regional_indicator_a: :regional_indicator_l: :regional_indicator_t: :arrow_down: \n' + getRandomLine() + '\n:regional_indicator_e: :regional_indicator_n: :regional_indicator_j: :regional_indicator_o: :regional_indicator_y: \n:heart_decoration: :heart: :heart_decoration: :heart: :heart_decoration:');
     	      		client.channels.get('407464458181672961').send('The user ' + msg.author + ' claimed an alt.');
-		    } else {
-			    msg.author.send("Please use this command in the #get-alt channel of our server.");
 		    }
-	    }
+	    } else {
+			msg.author.send("Please use this command in the #get-alt channel of our server.");
+		}
     else if (command === 'invite') return msg.channel.send(process.env.INVITE);
 });
 
