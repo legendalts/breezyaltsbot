@@ -1,2 +1,2 @@
-# EgyptAlts Bot
+# BreezyAlts Bot
 By Mario Latif
