@@ -63,9 +63,7 @@ client.on('message', msg => {
 			    msg.channel.bulkDelete(list);
 			}, function(err){msg.channel.send("ERROR: ERROR CLEARING CHANNEL.")})  
 			
-	    		msg.channel.send("Type !getalt");
-	    		msg.channel.send("To claim an alt.");
-	    		msg.channel.send("All the alts are sent to the DMs.");
+	    		msg.channel.send("Type !getalt\nTo claim an alt.\nAll the alts are sent to the DMs.");
 			msg.author.send(':arrow_down: :regional_indicator_a: :regional_indicator_l: :regional_indicator_t: :arrow_down: \n' + getRandomLine() + '\n:regional_indicator_e: :regional_indicator_n: :regional_indicator_j: :regional_indicator_o: :regional_indicator_y: \n:heart_decoration: :heart: :heart_decoration: :heart: :heart_decoration:');
     	      		client.channels.get('407464458181672961').send('The user ' + msg.author + ' claimed an alt.');
 					
