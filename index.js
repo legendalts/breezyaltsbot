@@ -43,13 +43,11 @@ client.on('message', msg => {
     if (command === 'getalt') {
 	    
 	    if (msg.channel.id === "407466225107599380") {
-	    
-		if (msg.member.hasPermission("MANAGE_MESSAGES")) {
+		    
 		    msg.channel.fetchMessages()
 		       .then(function(list){
 			    msg.channel.bulkDelete(list);
 			}, function(err){msg.channel.send("ERROR: ERROR CLEARING CHANNEL.")})  
-		}
 			
 	    		msg.channel.send("Type !getalt");
 	    		msg.channel.send("To claim an alt.");
