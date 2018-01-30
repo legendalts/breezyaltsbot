@@ -87,7 +87,7 @@ client.on('message', msg => {
 	    if (command === 'vipalt') {
 		
 			if (msg.channel.id === "407805388927401984") {
-				if (msg.member.roles.find(msg.author.name, "VIP")) {
+				if (msg.member.roles.find("name", "VIP")) {
 					
 				msg.channel.fetchMessages()
 				   .then(function(list){
