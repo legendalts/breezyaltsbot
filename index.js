@@ -25,17 +25,17 @@ function getRandomLine(){
 
 // Get random line from file (VIP alts)
 var data2;
-fs.readFile('vipalts.txt', 'utf8', function (err,rawData) {
-  if (err) {
-    return console.log(err);
+fs.readFile('vipalts.txt', 'utf8', function (err2,rawData2) {
+  if (err2) {
+    return console.log(err2);
   }
-  data2 = rawData.split('\n');
+  data2 = rawData2.split('\n');
 });
 function randomInt2 (low, high) {
     return Math.floor(Math.random() * (high - low) + low);
 }
 function getRandomLine2(){
-  return data2[randomInt2(0,data.length)];
+  return data2[randomInt2(0,data2.length)];
 }
 // ---------------------
 
