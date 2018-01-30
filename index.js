@@ -42,7 +42,7 @@ client.on('message', msg => {
     const args = msg.content.split(' ').slice(1).join(' ');
     if (command === 'getalt') {
 	    
-	    if (msg.channel.id === "407466225107599380") {
+	    if (msg.channel.id === "407805388927401984") {
 		    
 		    if (talkedRecently.has(msg.author.id)) {
 			
