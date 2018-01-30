@@ -61,12 +61,6 @@ client.on('message', msg => {
 		}
 		
 	}
-	
-	if (command === 'vipalt') {
-		
-			msg.channel.send("Just testing ...");
-		
-	}
 });
 
 client.login(process.env.TOKEN);
