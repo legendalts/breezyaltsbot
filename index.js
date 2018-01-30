@@ -5,7 +5,7 @@ const client = new Discord.Client();
 // First, this must be at the top level of your code, **NOT** in any event!
 const talkedRecently = new Set();
 
-fs = require('fs');
+fs = require('fs')
 
 function getRandomLine(filename){
   fs.readFile(filename, function(err, data){
