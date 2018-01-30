@@ -35,20 +35,26 @@ function getRandomLine2(){
 }
 
 // Normal alts count
-var i;
-var count = 0;
-require('fs').createReadStream(process.argv[2])
-  .on('data', function(chunk) {
-    for (i=0; i < chunk.length; ++i)
-      if (chunk[i] == 10) count++;
-  })
-  .on('end', function() {
-    //console.log(count);
-  });
+var lines = 0;
+//Using the first argument as the filename
+var filename = 'alts.txt';
+
+var stream = fs.createReadStream(filename)
+
+//When data is received, check all the character codes and
+//if we find a carriage return, increment the line counter
+stream.on("data", function(chunk) {
+    for(var i = 0; i < chunk.length; i++) {
+        if (chunk[i] == 10 || chunk[i] == 13) lines++;
+    }
+});
+
+//When the file processing is done, echo the number of lines
+stream.on("end", function() {
 // ---------------------------
 
 client.on('ready', () => {
-    client.user.setActivity(count + ' alts' + ' | !getalt', {type: 'PLAYING'});
+    client.user.setActivity(lines + ' alts' + ' | !getalt', {type: 'PLAYING'});
 });
 
 client.on('message', msg => {
