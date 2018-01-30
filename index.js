@@ -6,6 +6,8 @@ const client = new Discord.Client();
 const talkedRecently = new Set();
 
 fs = require('fs')
+
+// Normal alts
 var data;
 fs.readFile('alts.txt', 'utf8', function (err,rawData) {
   if (err) {
@@ -19,7 +21,9 @@ function randomInt (low, high) {
 function getRandomLine(){
   return data[randomInt(0,data.length)];
 }
+// ---------------------
 
+// VIP alts
 var data2;
 fs.readFile('vipalts.txt', 'utf8', function (err,rawData) {
   if (err) {
@@ -33,6 +37,7 @@ function randomInt2 (low, high) {
 function getRandomLine2(){
   return data2[randomInt2(0,data.length)];
 }
+// ---------------------
 
 // Normal alts count
 var lines = 0;
@@ -96,7 +101,30 @@ client.on('message', msg => {
 	}
 	
 	    if (command === 'vipalt') {
-			msg.channel.send("Test");
+		
+			if (msg.channel.id === "407805388927401984") {
+				if (msg.member.roles.find(msg.author.name, "VIP")) {
+					
+				msg.channel.fetchMessages()
+				   .then(function(list){
+					msg.channel.bulkDelete(list);
+				}, function(err){msg.channel.send("ERROR: ERROR CLEARING CHANNEL.")})  
+			
+				msg.channel.send("Type !getalt\nTo claim an alt.\nAll the alts are sent to the DMs.");
+				msg.author.send('-VIP ALT:-\n:arrow_down: :regional_indicator_a: :regional_indicator_l: :regional_indicator_t: :arrow_down: \n' + getRandomLine2() + '\n:regional_indicator_e: :regional_indicator_n: :regional_indicator_j: :regional_indicator_o: :regional_indicator_y: \n:heart_decoration: :heart: :heart_decoration: :heart: :heart_decoration:');
+				client.channels.get('407811864219746304').send('The user ' + msg.author + ' claimed a **VIP** alt.');
+					
+				} else {
+					msg.channel.fetchMessages()
+				   .then(function(list){
+					msg.channel.bulkDelete(list);
+				}, function(err){msg.channel.send("ERROR: ERROR CLEARING CHANNEL.")})
+					msg.author.send("You are not a VIP.");
+				}
+			} else {
+				msg.author.send("Please use this command in the #get-alt channel of our server.");
+			}
+		
 		}
 });
 
