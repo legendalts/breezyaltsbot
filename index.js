@@ -33,7 +33,7 @@ function randomInt2 (low, high) {
     return Math.floor(Math.random() * (high - low) + low);
 }
 function getRandomLine2(){
-  return data2[randomInt(0,data.length)];
+  return data2[randomInt2(0,data.length)];
 }
 
 var lines = 0;
