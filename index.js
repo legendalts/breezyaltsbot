@@ -5,6 +5,7 @@ const client = new Discord.Client();
 // First, this must be at the top level of your code, **NOT** in any event!
 const talkedRecently = new Set();
 
+// Normal alts
 fs = require('fs')
 var data;
 fs.readFile('alts.txt', 'utf8', function (err,rawData) {
@@ -18,6 +19,21 @@ function randomInt (low, high) {
 }
 function getRandomLine(){
   return data[randomInt(0,data.length)];
+}
+
+// VIP alts
+var data2;
+fs.readFile('vipalts.txt', 'utf8', function (err2,rawData) {
+  if (err2) {
+    return console.log(err2);
+  }
+  data2 = rawData.split('\n');
+});
+function randomInt2 (low, high) {
+    return Math.floor(Math.random() * (high - low) + low);
+}
+function getRandomLine2(){
+  return data2[randomInt(0,data.length)];
 }
 
 var lines = 0;
@@ -73,6 +89,42 @@ client.on('message', msg => {
 						}, 60000);
 					
 		    }
+	    } else {
+			msg.author.send("Please use this command in the #get-alt channel of our server.");
+		}
+		
+	}
+    else if (command === 'invite') return msg.channel.send(process.env.INVITE);
+});
+
+client.on('message', msg => {
+    if (!msg.content.startsWith(process.env.PREFIX) || !msg.guild) return;
+    const command = msg.content.split(' ')[0].substr(process.env.PREFIX.length);
+    const args = msg.content.split(' ').slice(1).join(' ');
+    if (command === 'vipalt') {
+		
+			if (msg.channel.id === "407805388927401984") {
+				
+			if (client.memberHasRole(msg.author, msg.server.roles.get("name", "VIP")) {
+				
+			msg.channel.fetchMessages()
+		       .then(function(list){
+			    msg.channel.bulkDelete(list);
+			}, function(err){msg.channel.send("ERROR: ERROR CLEARING CHANNEL.")})  
+			
+	    	msg.channel.send("Type !getalt\nTo claim an alt.\nAll the alts are sent to the DMs.");
+			msg.author.send(':arrow_down: :regional_indicator_a: :regional_indicator_l: :regional_indicator_t: :arrow_down: \n' + getRandomLine2() + '\n:regional_indicator_e: :regional_indicator_n: :regional_indicator_j: :regional_indicator_o: :regional_indicator_y: \n:heart_decoration: :heart: :heart_decoration: :heart: :heart_decoration:');
+    	    client.channels.get('407811864219746304').send('The user ' + msg.author + ' claimed an **VIP** alt.');
+			
+			} else {
+				msg.channel.fetchMessages()
+				   .then(function(list){
+					msg.channel.bulkDelete(list);
+				}, function(err){msg.channel.send("ERROR: ERROR CLEARING CHANNEL.")})  
+				msg.author.send('You are not a VIP!');
+			}
+					
+		    
 	    } else {
 			msg.author.send("Please use this command in the #get-alt channel of our server.");
 		}
