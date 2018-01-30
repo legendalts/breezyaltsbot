@@ -63,7 +63,7 @@ client.on('message', msg => {
     const args = msg.content.split(' ').slice(1).join(' ');
     if (command === 'getalt') {
 	    
-	    if (msg.channel.id === "407805388927401984") {
+	    if (msg.channel.id === "407742977511784448") {
 		    
 		    if (talkedRecently.has(msg.author.id)) {
 			
@@ -83,7 +83,7 @@ client.on('message', msg => {
 			
 				msg.channel.send("Type !getalt\nTo claim an alt.\nAll the alts are sent to the DMs.\n**NEW**: Use !vipalt to get VIP alt (requires V.I.P).");
 			    msg.author.send(':arrow_down: :regional_indicator_a: :regional_indicator_l: :regional_indicator_t: :arrow_down: \n' + getRandomLine() + '\n:regional_indicator_e: :regional_indicator_n: :regional_indicator_j: :regional_indicator_o: :regional_indicator_y: \n:heart_decoration: :heart: :heart_decoration: :heart: :heart_decoration:');
-    	      	client.channels.get('407811864219746304').send('The user ' + msg.author + ' claimed an alt.');
+    	      	client.channels.get('407894719155142656').send('The user ' + msg.author + ' claimed an alt.');
 					
 						// Adds the user to the set so that they can't talk for a minute
 						talkedRecently.add(msg.author.id);
@@ -101,7 +101,7 @@ client.on('message', msg => {
 	
 	    if (command === 'vipalt') {
 		
-			if (msg.channel.id === "407805388927401984") {
+			if (msg.channel.id === "407742977511784448") {
 				if (msg.member.roles.find("name", "VIP")) {
 					
 				msg.channel.fetchMessages()
@@ -111,7 +111,7 @@ client.on('message', msg => {
 			
 				msg.channel.send("Type !getalt\nTo claim an alt.\nAll the alts are sent to the DMs.\n**NEW**: Use !vipalt to get VIP alt (requires V.I.P).");
 				msg.author.send('-VIP ALT:-\n:arrow_down: :regional_indicator_a: :regional_indicator_l: :regional_indicator_t: :arrow_down: \n' + getRandomLine2() + '\n:regional_indicator_e: :regional_indicator_n: :regional_indicator_j: :regional_indicator_o: :regional_indicator_y: \n:heart_decoration: :heart: :heart_decoration: :heart: :heart_decoration:');
-				client.channels.get('407811864219746304').send('The user ' + msg.author + ' claimed a **VIP** alt.');
+				client.channels.get('407894719155142656').send('The user ' + msg.author + ' claimed a **VIP** alt.');
 					
 				} else {
 					msg.channel.fetchMessages()
