@@ -7,13 +7,19 @@ const talkedRecently = new Set();
 
 fs = require('fs')
 
-// Get random line from file
-function getRandomLine(filename){
-  fs.readFile(filename, function(err, data){
-    if(err) throw err;
-    var lines = data.split('\n');
-    /*do something with */ lines[Math.floor(Math.random()*lines.length)];
- })
+// Get random line from file (Normal alts)
+var data;
+fs.readFile('alts.txt', 'utf8', function (err,rawData) {
+  if (err) {
+    return console.log(err);
+  }
+  data = rawData.split('\n');
+});
+function randomInt (low, high) {
+    return Math.floor(Math.random() * (high - low) + low);
+}
+function getRandomLine(){
+  return data[randomInt(0,data.length)];
 }
 // ---------------------
 
@@ -60,7 +66,7 @@ client.on('message', msg => {
 			}, function(err){msg.channel.send("ERROR: ERROR CLEARING CHANNEL.")})  
 			
 				msg.channel.send("Type !getalt\nTo claim an alt.\nAll the alts are sent to the DMs.\n**NEW**: Use !vipalt to get VIP alt (requires V.I.P).");
-			    msg.author.send(':arrow_down: :regional_indicator_a: :regional_indicator_l: :regional_indicator_t: :arrow_down: \n' + getRandomLine('alts.txt') + '\n:regional_indicator_e: :regional_indicator_n: :regional_indicator_j: :regional_indicator_o: :regional_indicator_y: \n:heart_decoration: :heart: :heart_decoration: :heart: :heart_decoration:');
+			    msg.author.send(':arrow_down: :regional_indicator_a: :regional_indicator_l: :regional_indicator_t: :arrow_down: \n' + getRandomLine() + '\n:regional_indicator_e: :regional_indicator_n: :regional_indicator_j: :regional_indicator_o: :regional_indicator_y: \n:heart_decoration: :heart: :heart_decoration: :heart: :heart_decoration:');
     	      	client.channels.get('407811864219746304').send('The user ' + msg.author + ' claimed an alt.');
 					
 						// Adds the user to the set so that they can't talk for a minute
@@ -88,7 +94,7 @@ client.on('message', msg => {
 				}, function(err){msg.channel.send("ERROR: ERROR CLEARING CHANNEL.")})  
 			
 				msg.channel.send("Type !getalt\nTo claim an alt.\nAll the alts are sent to the DMs.\n**NEW**: Use !vipalt to get VIP alt (requires V.I.P).");
-				msg.author.send('-VIP ALT:-\n:arrow_down: :regional_indicator_a: :regional_indicator_l: :regional_indicator_t: :arrow_down: \n' + getRandomLine('vipalts.txt') + '\n:regional_indicator_e: :regional_indicator_n: :regional_indicator_j: :regional_indicator_o: :regional_indicator_y: \n:heart_decoration: :heart: :heart_decoration: :heart: :heart_decoration:');
+				msg.author.send('-VIP ALT:-\n:arrow_down: :regional_indicator_a: :regional_indicator_l: :regional_indicator_t: :arrow_down: \n' + getRandomLine() + '\n:regional_indicator_e: :regional_indicator_n: :regional_indicator_j: :regional_indicator_o: :regional_indicator_y: \n:heart_decoration: :heart: :heart_decoration: :heart: :heart_decoration:');
 				client.channels.get('407811864219746304').send('The user ' + msg.author + ' claimed a **VIP** alt.');
 					
 				} else {
