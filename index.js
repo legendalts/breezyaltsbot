@@ -38,9 +38,7 @@ function getRandomLine2(){
 var lines = 0;
 //Using the first argument as the filename
 var filename = 'alts.txt';
-
 var stream = fs.createReadStream(filename)
-
 //When data is received, check all the character codes and
 //if we find a carriage return, increment the line counter
 stream.on("data", function(chunk) {
@@ -48,9 +46,6 @@ stream.on("data", function(chunk) {
         if (chunk[i] == 10 || chunk[i] == 13) lines++;
     }
 });
-
-//When the file processing is done, echo the number of lines
-stream.on("end", function() {
 // ---------------------------
 
 client.on('ready', () => {
