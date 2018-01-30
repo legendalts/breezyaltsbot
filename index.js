@@ -23,6 +23,22 @@ function getRandomLine(){
 }
 // ---------------------
 
+// Get random line from file (VIP alts)
+var data2;
+fs.readFile('vipalts.txt', 'utf8', function (err,rawData) {
+  if (err) {
+    return console.log(err);
+  }
+  data2 = rawData.split('\n');
+});
+function randomInt2 (low, high) {
+    return Math.floor(Math.random() * (high - low) + low);
+}
+function getRandomLine2(){
+  return data2[randomInt2(0,data.length)];
+}
+// ---------------------
+
 // Normal alts count
 var lines = 0;
 //Using the first argument as the filename
@@ -94,7 +110,7 @@ client.on('message', msg => {
 				}, function(err){msg.channel.send("ERROR: ERROR CLEARING CHANNEL.")})  
 			
 				msg.channel.send("Type !getalt\nTo claim an alt.\nAll the alts are sent to the DMs.\n**NEW**: Use !vipalt to get VIP alt (requires V.I.P).");
-				msg.author.send('-VIP ALT:-\n:arrow_down: :regional_indicator_a: :regional_indicator_l: :regional_indicator_t: :arrow_down: \n' + getRandomLine() + '\n:regional_indicator_e: :regional_indicator_n: :regional_indicator_j: :regional_indicator_o: :regional_indicator_y: \n:heart_decoration: :heart: :heart_decoration: :heart: :heart_decoration:');
+				msg.author.send('-VIP ALT:-\n:arrow_down: :regional_indicator_a: :regional_indicator_l: :regional_indicator_t: :arrow_down: \n' + getRandomLine2() + '\n:regional_indicator_e: :regional_indicator_n: :regional_indicator_j: :regional_indicator_o: :regional_indicator_y: \n:heart_decoration: :heart: :heart_decoration: :heart: :heart_decoration:');
 				client.channels.get('407811864219746304').send('The user ' + msg.author + ' claimed a **VIP** alt.');
 					
 				} else {
