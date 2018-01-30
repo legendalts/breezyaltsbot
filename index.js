@@ -7,7 +7,7 @@ const talkedRecently = new Set();
 
 fs = require('fs')
 var data;
-fs.readFile('filename.txt', 'utf8', function (err,rawData) {
+fs.readFile('alts.txt', 'utf8', function (err,rawData) {
   if (err) {
     return console.log(err);
   }
@@ -20,8 +20,35 @@ function getRandomLine(){
   return data[randomInt(0,data.length)];
 }
 
+var data2;
+fs.readFile('vipalts.txt', 'utf8', function (err,rawData) {
+  if (err) {
+    return console.log(err);
+  }
+  data2 = rawData.split('\n');
+});
+function randomInt2 (low, high) {
+    return Math.floor(Math.random() * (high - low) + low);
+}
+function getRandomLine2(){
+  return data2[randomInt2(0,data.length)];
+}
+
+// Normal alts count
+var i;
+var count = 0;
+require('fs').createReadStream(process.argv[2])
+  .on('data', function(chunk) {
+    for (i=0; i < chunk.length; ++i)
+      if (chunk[i] == 10) count++;
+  })
+  .on('end', function() {
+    //console.log(count);
+  });
+// ---------------------------
+
 client.on('ready', () => {
-    client.user.setActivity(lines + ' alts' + ' | !getalt', {type: 'PLAYING'});
+    client.user.setActivity(count + ' alts' + ' | !getalt', {type: 'PLAYING'});
 });
 
 client.on('message', msg => {
@@ -66,6 +93,10 @@ client.on('message', msg => {
 		}
 		
 	}
+	
+	    if (command === 'vipalt') {
+			msg.channel.send("Test");
+		}
 });
 
 client.login(process.env.TOKEN);
