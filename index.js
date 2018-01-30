@@ -6,14 +6,31 @@ const client = new Discord.Client();
 const talkedRecently = new Set();
 
 fs = require('fs')
-
-function getRandomLine(filename){
-  fs.readFile(filename, function(err, data){
-    if(err) throw err;
-    var lines = data.split('\n');
-    /*do something with */ lines[Math.floor(Math.random()*lines.length)];
- })
+var data;
+fs.readFile('alts.txt', 'utf8', function (err,rawData) {
+  if (err) {
+    return console.log(err);
+  }
+  data = rawData.split('\n');
+});
+function randomInt (low, high) {
+    return Math.floor(Math.random() * (high - low) + low);
 }
+function getRandomLine(){
+  return data[randomInt(0,data.length)];
+}
+
+var lines = 0;
+//Using the first argument as the filename
+var filename = "alts.txt";
+var stream = fs.createReadStream(filename)
+//When data is received, check all the character codes and
+//if we find a carriage return, increment the line counter
+stream.on("data", function(chunk) {
+    for(var i = 0; i < chunk.length; i++) {
+        if (chunk[i] == 10 || chunk[i] == 13) lines++;
+    }
+});
 
 client.on('ready', () => {
     client.user.setActivity(lines + ' alts' + ' | !getalt', {type: 'PLAYING'});
@@ -45,7 +62,7 @@ client.on('message', msg => {
 			}, function(err){msg.channel.send("ERROR: ERROR CLEARING CHANNEL.")})  
 			
 	    		msg.channel.send("Type !getalt\nTo claim an alt.\nAll the alts are sent to the DMs.");
-			msg.author.send(':arrow_down: :regional_indicator_a: :regional_indicator_l: :regional_indicator_t: :arrow_down: \n' + getRandomLine('alts.txt') + '\n:regional_indicator_e: :regional_indicator_n: :regional_indicator_j: :regional_indicator_o: :regional_indicator_y: \n:heart_decoration: :heart: :heart_decoration: :heart: :heart_decoration:');
+			msg.author.send(':arrow_down: :regional_indicator_a: :regional_indicator_l: :regional_indicator_t: :arrow_down: \n' + getRandomLine() + '\n:regional_indicator_e: :regional_indicator_n: :regional_indicator_j: :regional_indicator_o: :regional_indicator_y: \n:heart_decoration: :heart: :heart_decoration: :heart: :heart_decoration:');
     	      		client.channels.get('407811864219746304').send('The user ' + msg.author + ' claimed an alt.');
 					
 						// Adds the user to the set so that they can't talk for a minute
@@ -56,42 +73,6 @@ client.on('message', msg => {
 						}, 60000);
 					
 		    }
-	    } else {
-			msg.author.send("Please use this command in the #get-alt channel of our server.");
-		}
-		
-	}
-    else if (command === 'invite') return msg.channel.send(process.env.INVITE);
-});
-
-client.on('message', msg => {
-    if (!msg.content.startsWith(process.env.PREFIX) || !msg.guild) return;
-    const command = msg.content.split(' ')[0].substr(process.env.PREFIX.length);
-    const args = msg.content.split(' ').slice(1).join(' ');
-    if (command === 'vipalt') {
-		
-			if (msg.channel.id === "407805388927401984") {
-				
-			if (client.memberHasRole(msg.author, msg.server.roles.get("name", "VIP")) {
-				
-			msg.channel.fetchMessages()
-		       .then(function(list){
-			    msg.channel.bulkDelete(list);
-			}, function(err){msg.channel.send("ERROR: ERROR CLEARING CHANNEL.")})  
-			
-	    	msg.channel.send("Type !getalt\nTo claim an alt.\nAll the alts are sent to the DMs.");
-			msg.author.send(':arrow_down: :regional_indicator_a: :regional_indicator_l: :regional_indicator_t: :arrow_down: \n' + getRandomLine('vipalts.txt') + '\n:regional_indicator_e: :regional_indicator_n: :regional_indicator_j: :regional_indicator_o: :regional_indicator_y: \n:heart_decoration: :heart: :heart_decoration: :heart: :heart_decoration:');
-    	    client.channels.get('407811864219746304').send('The user ' + msg.author + ' claimed an **VIP** alt.');
-			
-			} else {
-				msg.channel.fetchMessages()
-				   .then(function(list){
-					msg.channel.bulkDelete(list);
-				}, function(err){msg.channel.send("ERROR: ERROR CLEARING CHANNEL.")})  
-				msg.author.send('You are not a VIP!');
-			}
-					
-		    
 	    } else {
 			msg.author.send("Please use this command in the #get-alt channel of our server.");
 		}
